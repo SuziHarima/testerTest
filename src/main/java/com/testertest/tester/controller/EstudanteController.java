@@ -1,7 +1,7 @@
 package com.testertest.tester.controller;
 
-import com.example.demo.database.entities.Estudante;
-import com.example.demo.service.EstudanteService;
+import com.testertest.tester.database.entities.Estudante;
+import com.testertest.tester.service.EstudanteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

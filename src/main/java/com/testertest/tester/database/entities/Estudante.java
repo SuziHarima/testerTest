@@ -1,10 +1,7 @@
 package com.testertest.tester.database.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -22,4 +19,6 @@ public class Estudante {
 
     @ManyToMany(mappedBy = "estudantes")
     private List<Turma> turma;
+
+
 }
