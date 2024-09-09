@@ -41,7 +41,8 @@ public class TurmaService {
         turmaRepository.deleteById(id);
     }
 
-    public Estudante adicionarEstudanteNaTurma(Long turmaId, Estudante estudante) {
+    public Estudante adicionarEstudanteNaTurma(Long turmaId,
+                                               Estudante estudante) {
         Turma turma = buscarTurmaPorId(turmaId);
         estudante.getTurma().add(turma);
         return estudante;

@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -93,6 +94,18 @@ class TurmaServiceTest {
 
     @Test
     void adicionarEstudanteNaTurma() {
+        Estudante estudante = new Estudante(1L,
+                "Joaquina",
+                "31231",
+                new ArrayList<>());
+
+        when(turmaRepository.findById(anyLong())).thenReturn(Optional.of(turma));
+
+        Estudante retorno = turmaService
+                .adicionarEstudanteNaTurma(turma.getId(), estudante);
+
+        verify(turmaRepository).findById(anyLong());
+        assertEquals(turma, retorno.getTurma().get(0));
     }
 
     @Test
