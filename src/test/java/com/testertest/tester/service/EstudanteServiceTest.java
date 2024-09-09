@@ -10,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +34,7 @@ class EstudanteServiceTest {
         estudante = new Estudante(1L,
                 "Salem",
                 "123.456.78",
-                new ArrayList<>());
+                Collections.emptyList());
     }
 
     @Test
@@ -75,6 +76,21 @@ class EstudanteServiceTest {
 
     @Test
     void atualizarEstudante() {
+        when(estudanteRepository.findById(anyLong()))
+                .thenReturn(Optional.of(estudante));
+        when(estudanteRepository.save(any(Estudante.class))).thenReturn(estudante);
+
+        Estudante retorno = estudanteService.atualizarEstudante(1L,
+                "Kirara",
+                "876.543.21");
+
+
+        verify(estudanteRepository).findById(anyLong());
+        verify(estudanteRepository).save(any(Estudante.class));
+        assertNotNull(retorno);
+        assertEquals("Kirara", retorno.getNome());
+
+
     }
 
     @Test
