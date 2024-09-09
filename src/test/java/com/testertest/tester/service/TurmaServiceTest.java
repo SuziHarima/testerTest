@@ -2,6 +2,7 @@ package com.testertest.tester.service;
 
 import com.testertest.tester.database.entities.Estudante;
 import com.testertest.tester.database.entities.Turma;
+import com.testertest.tester.database.repositories.EstudanteRepository;
 import com.testertest.tester.database.repositories.TurmaRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -10,10 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -35,7 +33,7 @@ class TurmaServiceTest {
     public static void setup(){
         turma = new Turma(1L,
                 "turma",
-                Collections.emptyList());
+                new ArrayList<>(Arrays.asList(new Estudante(1L, "Luke", "123.321", new ArrayList<>()))));
     }
 
     @Test
@@ -110,5 +108,16 @@ class TurmaServiceTest {
 
     @Test
     void removerEstudanteDaTurma() {
+        int inicial = turma.getEstudantes().size();
+        Estudante estudante = turma.getEstudantes().get(0);
+
+        when(turmaRepository.findById(anyLong())).thenReturn(Optional.of(turma));
+
+        turmaService.removerEstudanteDaTurma(turma.getId(), estudante);
+        int removido = turma.getEstudantes().size();
+
+        verify(turmaRepository).findById(anyLong());
+        assertEquals(inicial, removido);
+
     }
 }
