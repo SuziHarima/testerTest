@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -48,6 +49,13 @@ class TurmaServiceTest {
 
     @Test
     void listarTurmas() {
+        when(turmaRepository.findAll()).thenReturn(List.of(turma));
+
+        List<Turma> retorno = turmaService.listarTurmas();
+
+        verify(turmaRepository).findAll();
+        assertNotNull(retorno);
+        assertEquals(turma.getNome(), retorno.get(0).getNome());
     }
 
     @Test
