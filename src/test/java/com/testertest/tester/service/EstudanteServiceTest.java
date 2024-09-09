@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -64,6 +65,12 @@ class EstudanteServiceTest {
 
     @Test
     void buscarEstudantePorId() {
+        when(estudanteRepository.findById(anyLong()))
+                .thenReturn(Optional.ofNullable(estudante));
+
+        assertDoesNotThrow(
+                () -> estudanteService.buscarEstudantePorId(1L)
+        );
     }
 
     @Test
