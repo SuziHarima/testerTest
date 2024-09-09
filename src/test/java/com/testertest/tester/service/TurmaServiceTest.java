@@ -72,6 +72,16 @@ class TurmaServiceTest {
 
     @Test
     void atualizarTurma() {
+        when(turmaRepository.findById(anyLong()))
+                .thenReturn(Optional.of(turma));
+        when(turmaRepository.save(any(Turma.class))).thenReturn(turma);
+
+        Turma retorno = turmaService.atualizarTurma(2L, "turma alterada");
+
+        verify(turmaRepository).findById(anyLong());
+        verify(turmaRepository).save(any(Turma.class));
+        assertNotNull(retorno);
+        assertEquals("turma alterada", retorno.getNome());
     }
 
     @Test
