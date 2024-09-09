@@ -86,6 +86,9 @@ class TurmaServiceTest {
 
     @Test
     void removerTurma() {
+        turmaService.removerTurma(1L);
+
+        verify(turmaRepository).deleteById(anyLong());
     }
 
     @Test
