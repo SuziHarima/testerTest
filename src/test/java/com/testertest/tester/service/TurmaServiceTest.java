@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -60,6 +61,13 @@ class TurmaServiceTest {
 
     @Test
     void buscarTurmaPorId() {
+        when(turmaRepository.findById(anyLong()))
+                .thenReturn(Optional.ofNullable(turma));
+
+        Turma retorno = turmaService.buscarTurmaPorId(1L);
+
+        verify(turmaRepository).findById(anyLong());
+        assertEquals(turma.getNome(), retorno.getNome());
     }
 
     @Test
