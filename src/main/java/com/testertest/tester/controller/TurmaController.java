@@ -1,9 +1,9 @@
 package com.testertest.tester.controller;
 
 
-import com.example.demo.controller.dto.TurmaRequest;
-import com.example.demo.database.entities.Turma;
-import com.example.demo.service.TurmaService;
+import com.testertest.tester.controller.dto.TurmaRequest;
+import com.testertest.tester.database.entities.Turma;
+import com.testertest.tester.service.TurmaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
