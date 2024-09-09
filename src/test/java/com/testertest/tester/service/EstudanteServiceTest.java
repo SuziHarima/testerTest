@@ -89,11 +89,12 @@ class EstudanteServiceTest {
         verify(estudanteRepository).save(any(Estudante.class));
         assertNotNull(retorno);
         assertEquals("Kirara", retorno.getNome());
-
-
     }
 
     @Test
     void removerEstudante() {
+        estudanteService.removerEstudante(1L);
+
+        verify(estudanteRepository).deleteById(anyLong());
     }
 }
