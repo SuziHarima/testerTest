@@ -21,18 +21,26 @@ public class EstudanteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Estudante> buscarEstudantePorId(@PathVariable Long id) {
-        return ResponseEntity.ok(estudanteService.buscarEstudantePorId(id));
+    public ResponseEntity<Estudante> buscarEstudantePorId(
+            @PathVariable Long id) {
+        return ResponseEntity.ok(estudanteService
+                .buscarEstudantePorId(id));
     }
 
     @PostMapping
-    public Estudante cadastrarEstudante(@RequestBody Estudante estudante) {
-        return estudanteService.cadastrarEstudante(estudante.getNome(), estudante.getMatricula());
+    public Estudante cadastrarEstudante(
+            @RequestBody Estudante estudante) {
+        return estudanteService.cadastrarEstudante(
+                estudante.getNome(), estudante.getMatricula());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Estudante> atualizarEstudante(@PathVariable Long id, @RequestBody Estudante estudante) {
-        return ResponseEntity.ok(estudanteService.atualizarEstudante(id, estudante.getNome(), estudante.getMatricula()));
+    public ResponseEntity<Estudante> atualizarEstudante(
+            @PathVariable Long id, @RequestBody Estudante estudante) {
+        return ResponseEntity.ok(estudanteService
+                .atualizarEstudante(id,
+                        estudante.getNome(),
+                        estudante.getMatricula()));
     }
 
     @DeleteMapping("/{id}")
